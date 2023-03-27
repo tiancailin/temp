@@ -1,14 +1,12 @@
 from flask import Flask, render_template
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
-
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # 要爬取的页面内容
+    # 舞蹈区url
     url = 'https://www.douyu.com/g_dance'
     # 伪装成浏览器发送请求
     headers = {
@@ -34,8 +32,7 @@ def index():
     for link in js_links:
         js_content.append(requests.get(link).text)
 
-    # 获取页面内容
-    # html_content = str(soup.find('div', {'id': 'js-list-body'}).decode_contents())
+    # 找到直播间列表所在的div
     room_list = soup.find('div', {'class': 'layout-Module-container layout-Cover ListContent'})
 
     # 重写a标签链接地址
