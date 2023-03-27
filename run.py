@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 @app.route('/')
 def index():
@@ -13,7 +13,7 @@ def index():
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, 'html.parser')
     print(soup)
-    input()
+    # input()
     
     # 获取CSS、JS等静态资源链接
     css_links = []

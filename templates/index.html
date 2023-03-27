@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>Douyu Dance</title>
     {% for css_link in css_links %}
-    <link rel="stylesheet" href="{{ css_link }}">
+    <!-- <link rel="stylesheet" href="{{ css_link }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     {% endfor %}
   </head>
   <body>
@@ -12,7 +13,8 @@
       {{ content }}
     </div>
     {% for js_link in js_links %}
-    <script src="{{ js_link }}"></script>
+    <!-- <script src="{{ js_link }}"></script> -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
     {% endfor %}
   </body>
 </html>
