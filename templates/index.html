@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Douyu Dance</title>
-    {% for css_link in css_links %}
-    <!-- <link rel="stylesheet" href="{{ css_link }}"> -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<head>
+    <title>Douyu</title>
+    {% for css_link in css %}
+        <style>{{ css_link|safe }}</style>
     {% endfor %}
-  </head>
-  <body>
+</head>
+<body>
     <div id="content">
-      {{ content }}
+        {{ html|safe }}
     </div>
-    {% for js_link in js_links %}
-    <!-- <script src="{{ js_link }}"></script> -->
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    {% for js_link in js %}
+        <script>{{ js_link|safe }}</script>
     {% endfor %}
-  </body>
+</body>
 </html>
