@@ -33,9 +33,10 @@ def index():
         js_content.append(requests.get(link).text)
 
     # 获取页面内容
-    html_content = str(soup.find('div', {'id': 'js-list-body'}).decode_contents())
+    # html_content = str(soup.find('div', {'id': 'js-list-body'}).decode_contents())
+    room_list = soup.find('div', {'class': 'layout-Module-container layout-Cover ListContent'})
 
-    return render_template('index.html', css=css_content, js=js_content, html=html_content)
+    return render_template('index.html', css=css_content, js=js_content, html=room_list)
 
 if __name__ == '__main__':
     app.run(port=8888,debug=True)
