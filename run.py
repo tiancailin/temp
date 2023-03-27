@@ -1,6 +1,8 @@
 from flask import Flask, render_template
 import requests
 from bs4 import BeautifulSoup
+from urllib.parse import urljoin
+
 
 app = Flask(__name__)
 
@@ -35,6 +37,14 @@ def index():
     # 获取页面内容
     # html_content = str(soup.find('div', {'id': 'js-list-body'}).decode_contents())
     room_list = soup.find('div', {'class': 'layout-Module-container layout-Cover ListContent'})
+
+    # 重写a标签链接地址
+    for room in room_list.find_all('li'):
+        a_tag = room.find('a', {'class': 'DyListCover-wrap'})
+        if a_tag is not None and 'href' in a_tag.attrs:
+            href = a_tag['href']
+            new_href = f"https://www.douyu.com{href}"
+            a_tag['href'] = new_href
 
     return render_template('index.html', css=css_content, js=js_content, html=room_list)
 
