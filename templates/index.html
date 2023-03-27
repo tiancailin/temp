@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="utf-8">
     <title>Douyu Dance</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-</head>
-<body>
-    {{ content }}
-    <style>
-	.layout-Cover-list{margin:0 auto;}
-	.layout-Cover-item{width:20%}
-    </style>
-</body>
+    {% for css_link in css_links %}
+    <link rel="stylesheet" href="{{ css_link }}">
+    {% endfor %}
+  </head>
+  <body>
+    <div id="content">
+      {{ content }}
+    </div>
+    {% for js_link in js_links %}
+    <script src="{{ js_link }}"></script>
+    {% endfor %}
+  </body>
 </html>
