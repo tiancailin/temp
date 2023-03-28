@@ -1,6 +1,8 @@
 from flask import Flask, render_template
 import requests
 from bs4 import BeautifulSoup
+import dy_url
+
 
 app = Flask(__name__)
 
@@ -33,16 +35,16 @@ def index():
         js_content.append(requests.get(link).text)
 
     # 找到直播间列表所在的div
-    # room_list = soup.find('div', {'class': 'layout-Module-container layout-Cover ListContent'})
-    room_list = soup.select('div.layout-Module-container.layout-Cover.ListContent ul.layout-Cover-list li.layout-Cover-item')[:36]
+    room_list = soup.find('div', {'class': 'layout-Module-container layout-Cover ListContent'})
+    # room_list = soup.select('div.layout-Module-container.layout-Cover.ListContent ul.layout-Cover-list li.layout-Cover-item')
 
     # 重写a标签链接地址
-    for room in room_list.find_all('li'):
-        a_tag = room.find('a', {'class': 'DyListCover-wrap'})
-        if a_tag is not None and 'href' in a_tag.attrs:
-            href = a_tag['href']
-            new_href = f"https://www.douyu.com{href}"
-            a_tag['href'] = new_href
+    # for room in room_list.find_all('li'):
+    #     a_tag = room.find('a', {'class': 'DyListCover-wrap'})
+    #     if a_tag is not None and 'href' in a_tag.attrs:
+    #         href = a_tag['href']
+    #         new_href = f"https://www.douyu.com{href}"
+    #         a_tag['href'] = new_href
 
     return render_template('index.html', css=css_content, js=js_content, html=room_list)
 
