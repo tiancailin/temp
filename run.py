@@ -33,7 +33,8 @@ def index():
         js_content.append(requests.get(link).text)
 
     # 找到直播间列表所在的div
-    room_list = soup.find('div', {'class': 'layout-Module-container layout-Cover ListContent'})
+    # room_list = soup.find('div', {'class': 'layout-Module-container layout-Cover ListContent'})
+    room_list = soup.select('div.layout-Module-container.layout-Cover.ListContent ul.layout-Cover-list li.layout-Cover-item')[:36]
 
     # 重写a标签链接地址
     for room in room_list.find_all('li'):
