@@ -89,9 +89,11 @@ class DouYu:
         real_url = {}
         error = self.get_pre()
         if error == 102:
-            raise Exception('房间不存在')
+            # raise Exception('房间不存在')
+            return False
         elif error == 104:
-            raise Exception('房间未开播')
+            # raise Exception('房间未开播')
+            return False
         else:
             try:
                 data = self.get_js()
