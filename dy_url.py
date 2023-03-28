@@ -26,7 +26,8 @@ class DouYu:
         if result:
             self.rid = result.group(1)
         else:
-            raise Exception('房间号错误')
+            # raise Exception('房间号错误')
+            return None
 
     @staticmethod
     def md5(data):
