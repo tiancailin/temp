@@ -8,13 +8,15 @@
 </head>
 <body>
     <div id="content">
-        {{ html|safe }}
+    	<ul class="layout-Cover-list">
+        	{{ html|safe }}
+    	</ul>
     </div>
     {% for js_link in js %}
         <script>{{ js_link|safe }}</script>
     {% endfor %}
     <style>
-    	#content .layout-Cover-item {width:20%;}
+    	#content .layout-Cover-item {width:16.66%;}
     </style>
 </body>
 </html>
